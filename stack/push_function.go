@@ -2,7 +2,7 @@ package stack
 
 import "fmt"
 
-func (s *Stack) Pa() {
+func (s *Stack) Pb() {
 	if len(s.StackA) == 0 {
 		fmt.Println("Error: Pile A is empty")
 		return
@@ -12,11 +12,11 @@ func (s *Stack) Pa() {
 	s.StackA = s.StackA[:len(s.StackA)-1]
 
 	s.StackB = append(s.StackB, value)
-	s.Operation = append(s.Operation, "pa")
+	s.Operation = append(s.Operation, "pb")
 	s.InstructionCount++
 }
 
-func (s *Stack) Pb() {
+func (s *Stack) Pa() {
 	if len(s.StackB) == 0 {
 		fmt.Println("Error : Pile B is empty")
 		return
@@ -27,6 +27,6 @@ func (s *Stack) Pb() {
 
 	s.StackA = append(s.StackA, value)
 
-	s.Operation = append(s.Operation, "pb")
+	s.Operation = append(s.Operation, "pa")
 	s.InstructionCount++
 }
