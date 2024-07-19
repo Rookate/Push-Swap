@@ -13,6 +13,8 @@ func (s *Stack) Sa() {
 	s.StackA = s.StackA[:len(s.StackA)-2]
 
 	s.StackA = append(s.StackA, first, second)
+	s.Operation = append(s.Operation, "sa")
+	s.InstructionCount++
 
 }
 
@@ -28,9 +30,13 @@ func (s *Stack) Sb() {
 	s.StackB = s.StackB[:len(s.StackB)-2]
 
 	s.StackB = append(s.StackB, first, second)
+	s.Operation = append(s.Operation, "sb")
+	s.InstructionCount++
 }
 
 func (s *Stack) Ss() {
 	s.Sa()
 	s.Sb()
+	s.Operation = append(s.Operation, "ss")
+	s.InstructionCount++
 }

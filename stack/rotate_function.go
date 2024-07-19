@@ -13,6 +13,8 @@ func (s *Stack) Ra() {
 	s.StackA = s.StackA[1:]
 
 	s.StackA = append(s.StackA, first)
+	s.Operation = append(s.Operation, "ra")
+	s.InstructionCount++
 }
 
 func (s *Stack) Rb() {
@@ -24,9 +26,13 @@ func (s *Stack) Rb() {
 	s.StackB = s.StackB[1:]
 
 	s.StackB = append(s.StackB, first)
+	s.Operation = append(s.Operation, "rb")
+	s.InstructionCount++
 }
 
 func (s *Stack) Rr() {
 	s.Ra()
 	s.Rb()
+	s.Operation = append(s.Operation, "rr")
+	s.InstructionCount++
 }

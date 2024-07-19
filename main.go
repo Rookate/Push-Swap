@@ -40,5 +40,11 @@ func main() {
 
 	//Exemple d'appel de méthode
 	s.Ra()
+	s.Sa()
+	s.Pa()
+	s.Pa()
+	s.Pa()
+	s.Rrb()
+	s.Pa()
 	s.PrintStack()
 }

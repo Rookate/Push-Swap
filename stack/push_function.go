@@ -12,6 +12,8 @@ func (s *Stack) Pa() {
 	s.StackA = s.StackA[:len(s.StackA)-1]
 
 	s.StackB = append(s.StackB, value)
+	s.Operation = append(s.Operation, "pa")
+	s.InstructionCount++
 }
 
 func (s *Stack) Pb() {
@@ -24,4 +26,7 @@ func (s *Stack) Pb() {
 	s.StackB = s.StackB[:len(s.StackB)-1]
 
 	s.StackA = append(s.StackA, value)
+
+	s.Operation = append(s.Operation, "pb")
+	s.InstructionCount++
 }
