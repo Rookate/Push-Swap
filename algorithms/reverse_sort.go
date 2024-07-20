@@ -6,20 +6,33 @@ import (
 )
 
 func ReverseSort(s *stack.Stack) {
-	maxA := Max(s.StackA)
-	middle := len(s.StackA) / 2
-	for i := 0; i < middle; i++ {
-		instructions.ExecuteInstruction(s, "rra")
+	for !IsSorted(s.StackA) {
+		maxA := Max(s.StackA)
+
+		middle := len(s.StackA) / 2
+
+		for i := 0; i < middle; i++ {
+			instructions.ExecuteInstruction(s, "rra")
+		}
+
+		for i := 0; i < middle; i++ {
+			instructions.ExecuteInstruction(s, "pb")
+		}
+
+		maxB := Max(s.StackB)
+
+		if maxA == s.StackA[0] && (len(s.StackB) > 0 && maxB != s.StackB[0]) {
+			instructions.ExecuteInstruction(s, "rr")
+		}
+
+		if len(s.StackA) > 1 && s.StackA[0] > s.StackA[1] {
+			instructions.ExecuteInstruction(s, "sa")
+		}
+		for len(s.StackB) > 0 {
+			instructions.ExecuteInstruction(s, "pa")
+		}
 	}
 
-	for i := 0; i < middle; i++ {
-		instructions.ExecuteInstruction(s, "pb")
-	}
-	maxB := Max(s.StackB)
-
-	if maxA == s.StackA[0] && maxB != s.StackB[0] {
-		instructions.ExecuteInstruction(s, "rr")
-	}
 }
 
 func Max(slice []int) int {

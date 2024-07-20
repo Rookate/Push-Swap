@@ -15,13 +15,8 @@ func Reseolve(s *stack.Stack) {
 		fmt.Println("Stack already sort")
 		return
 	}
-}
 
-func IsSorted(stack []int) bool {
-	for i := 1; i < len(stack); i++ {
-		if stack[i] < stack[i-1] {
-			return false
-		}
+	if IsDescending(s.StackA) {
+		ReverseSort(s)
 	}
-	return true
 }

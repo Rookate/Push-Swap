@@ -8,20 +8,20 @@ import (
 
 func TestReverseSort(t *testing.T) {
 	s := stack.Stack{
-		StackA: []int{5, 4, 3, 2, 1},
+		StackA: []int{122, 80, 36, 20},
 		StackB: []int{},
 	}
 
 	fmt.Println("Before func:", s.StackA)
 	fmt.Println("Before func:", s.StackB)
-	ReverseSort(&s)
+	Reseolve(&s)
 	fmt.Println("After func:", s.StackA)
 	fmt.Println("After func:", s.StackB)
 	fmt.Println("Number of instructions:", s.InstructionCount)
 	fmt.Println("Operations:", s.Operation)
 
-	expectedA := []int{4, 3, 5}
-	expectedB := []int{2, 1}
+	expectedA := []int{20, 36, 80, 122}
+	expectedB := []int{}
 
 	if len(s.StackA) != len(expectedA) {
 		t.Errorf("Have: %v; want: %v", s.StackA, expectedA)
