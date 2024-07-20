@@ -12,7 +12,6 @@ func (s *Stack) Rra() {
 	s.StackA = s.StackA[:len(s.StackA)-1]
 	s.StackA = append([]int{last}, s.StackA...)
 	s.Operation = append(s.Operation, "rra")
-	s.InstructionCount++
 }
 
 func (s *Stack) Rrb() {
@@ -25,12 +24,19 @@ func (s *Stack) Rrb() {
 	s.StackB = s.StackB[:len(s.StackB)-1]
 	s.StackB = append([]int{last}, s.StackB...)
 	s.Operation = append(s.Operation, "rrb")
-	s.InstructionCount++
 }
 
 func (s *Stack) Rrr() {
-	s.Rra()
-	s.Rrb()
+	if len(s.StackA) >= 2 {
+		last := s.StackA[len(s.StackA)-1]
+		s.StackA = s.StackA[:len(s.StackA)-1]
+		s.StackA = append([]int{last}, s.StackA...)
+	}
+
+	if len(s.StackB) >= 2 {
+		last := s.StackB[len(s.StackB)-1]
+		s.StackB = s.StackB[:len(s.StackB)-1]
+		s.StackB = append([]int{last}, s.StackB...)
+	}
 	s.Operation = append(s.Operation, "rrr")
-	s.InstructionCount++
 }

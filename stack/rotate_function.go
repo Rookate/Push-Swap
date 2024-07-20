@@ -14,7 +14,6 @@ func (s *Stack) Ra() {
 
 	s.StackA = append(s.StackA, first)
 	s.Operation = append(s.Operation, "ra")
-	s.InstructionCount++
 }
 
 func (s *Stack) Rb() {
@@ -27,12 +26,20 @@ func (s *Stack) Rb() {
 
 	s.StackB = append(s.StackB, first)
 	s.Operation = append(s.Operation, "rb")
-	s.InstructionCount++
 }
 
 func (s *Stack) Rr() {
-	s.Ra()
-	s.Rb()
+	if len(s.StackA) >= 2 {
+		first := s.StackA[0]
+		s.StackA = s.StackA[1:]
+		s.StackA = append(s.StackA, first)
+	}
+
+	if len(s.StackB) >= 2 {
+		first := s.StackB[0]
+		s.StackB = s.StackB[1:]
+		s.StackB = append(s.StackB, first)
+	}
+
 	s.Operation = append(s.Operation, "rr")
-	s.InstructionCount++
 }
