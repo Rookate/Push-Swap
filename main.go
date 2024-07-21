@@ -1,6 +1,7 @@
 package main
 
 import (
+	algorithm "Push-Swap/algorithms"
 	"Push-Swap/condition"
 	"Push-Swap/stack"
 	"fmt"
@@ -15,7 +16,7 @@ func main() {
 		return
 	}
 
-	args := os.Args[1:]
+	args := os.Args[1]
 	if condition.HasDuplicates(args) {
 		fmt.Println("Error: There are duplicates in the arguments")
 		return
@@ -37,14 +38,9 @@ func main() {
 
 		s.StackA = append(s.StackA, num)
 	}
-
-	//Exemple d'appel de méthode
-	s.Ra()
-	s.Sa()
-	s.Pa()
-	s.Pa()
-	s.Pa()
-	s.Rrb()
-	s.Pa()
-	s.PrintStack()
+	algorithm.Reseolve(&s)
+	fmt.Println("Stack A:", s.StackA)
+	fmt.Println("Stack B:", s.StackB)
+	fmt.Println("Instruction Count:", s.InstructionCount)
+	fmt.Println("Flags:", s.Operation)
 }

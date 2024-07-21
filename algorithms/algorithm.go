@@ -15,8 +15,7 @@ func Reseolve(s *stack.Stack) {
 		fmt.Println("Stack already sort")
 		return
 	}
-
-	if IsDescending(s.StackA) {
+	if IsDescending(s.StackA) && len(s.StackA) <= 5 {
 		ReverseSort(s)
 	}
 }

@@ -2,6 +2,7 @@ package condition
 
 import (
 	"strconv"
+	"strings"
 )
 
 func IsNumber(str string) bool {
@@ -9,13 +10,15 @@ func IsNumber(str string) bool {
 	return err == nil
 }
 
-func HasDuplicates(args []string) bool {
-	seen := make(map[string]bool)
-	for _, arg := range args {
-		if seen[arg] {
+func HasDuplicates(args string) bool {
+	elements := strings.Fields(args)
+	seen := make(map[string]struct{})
+
+	for _, element := range elements {
+		if _, exists := seen[element]; exists {
 			return true
 		}
-		seen[arg] = true
+		seen[element] = struct{}{}
 	}
 	return false
 }
