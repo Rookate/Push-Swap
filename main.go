@@ -38,7 +38,7 @@ func main() {
 
 		s.StackA = append(s.StackA, num)
 	}
-	algorithm.Reseolve(&s)
+	algorithm.Resolve(&s)
 	fmt.Println("Stack A:", s.StackA)
 	fmt.Println("Stack B:", s.StackB)
 	fmt.Println("Instruction Count:", s.InstructionCount)

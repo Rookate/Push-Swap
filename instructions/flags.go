@@ -5,8 +5,8 @@ import (
 	"fmt"
 )
 
-func ExecuteInstruction(s *stack.Stack, instruction string) {
-	switch instruction {
+func ExecuteInstruction(s *stack.Stack, instructions string) {
+	switch instructions {
 	case "sa":
 		s.Sa()
 	case "sb":
@@ -30,7 +30,7 @@ func ExecuteInstruction(s *stack.Stack, instruction string) {
 	case "rrr":
 		s.Rrr()
 	default:
-		fmt.Println("Error: unknown instruction", instruction)
+		fmt.Println("Error: unknown instruction", instructions)
 		return
 	}
 	s.InstructionCount++

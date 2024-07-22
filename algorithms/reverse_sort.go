@@ -1,7 +1,7 @@
-package algorithm
+package algorithms
 
 import (
-	instructions "Push-Swap/instruction"
+	instructions "Push-Swap/instructions"
 	"Push-Swap/stack"
 )
 
@@ -45,19 +45,4 @@ func ReverseSort(s *stack.Stack) {
 		}
 	}
 
-}
-
-func Max(slice []int) int {
-	if len(slice) == 0 {
-		return 0
-	}
-
-	max := slice[0]
-
-	for _, value := range slice[1:] {
-		if value > max {
-			max = value
-		}
-	}
-	return max
 }

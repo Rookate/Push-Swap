@@ -1,11 +1,11 @@
-package algorithm
+package algorithms
 
 import (
 	"Push-Swap/stack"
 	"fmt"
 )
 
-func Reseolve(s *stack.Stack) {
+func Resolve(s *stack.Stack) {
 	if len(s.StackA) == 0 {
 		fmt.Println("Error: Stack A is empty")
 		return
@@ -18,4 +18,5 @@ func Reseolve(s *stack.Stack) {
 	if IsDescending(s.StackA) && len(s.StackA) <= 5 {
 		ReverseSort(s)
 	}
+	SortAlgorithm(s)
 }

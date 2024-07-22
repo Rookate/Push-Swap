@@ -1,4 +1,4 @@
-package algorithm
+package algorithms
 
 import (
 	"Push-Swap/stack"
@@ -14,7 +14,7 @@ func TestReverseSort(t *testing.T) {
 
 	fmt.Println("Before func:", s.StackA)
 	fmt.Println("Before func:", s.StackB)
-	Reseolve(&s)
+	Resolve(&s)
 	fmt.Println("After func:", s.StackA)
 	fmt.Println("After func:", s.StackB)
 	fmt.Println("Number of instructions:", s.InstructionCount)
@@ -42,6 +42,28 @@ func TestReverseSort(t *testing.T) {
 	for i, v := range s.StackB {
 		if v != expectedB[i] {
 			t.Errorf("Have: %v; want: %v", s.StackB, expectedB)
+		}
+	}
+}
+
+func TestMin(t *testing.T) {
+	tests := []struct {
+		input    []int
+		expected int
+	}{
+		{[]int{3, 1, 4, 1, 5, 9, 2, 6, 5}, 1},
+		{[]int{10, 20, 30}, 10},
+		{[]int{7, 7, 7, 7, 7}, 7},
+		{[]int{-5, -10, 0, 5, 10}, -10},
+		{[]int{}, 0}, // Testing the empty slice case
+	}
+	for _, test := range tests {
+		result := Min(test.input)
+		if result != test.expected {
+			t.Errorf("Min(%v) = %d; expected %d", test.input, result, test.expected)
+		} else {
+			fmt.Println("Result:", result)
+			fmt.Println("Expected:", test.expected)
 		}
 	}
 }
