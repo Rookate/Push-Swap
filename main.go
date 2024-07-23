@@ -39,8 +39,10 @@ func main() {
 		s.StackA = append(s.StackA, num)
 	}
 	algorithm.Resolve(&s)
+	result := algorithm.Checker(&s)
 	fmt.Println("Stack A:", s.StackA)
 	fmt.Println("Stack B:", s.StackB)
+	fmt.Println("Result:", result)
 	fmt.Println("Instruction Count:", s.InstructionCount)
 	fmt.Println("Flags:", s.Operation)
 }

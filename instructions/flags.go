@@ -2,11 +2,12 @@ package instructions
 
 import (
 	"Push-Swap/stack"
-	"fmt"
+	"errors"
 )
 
-func ExecuteInstruction(s *stack.Stack, instructions string) {
-	switch instructions {
+// ExecuteInstruction applique une instruction sur la pile
+func ExecuteInstruction(s *stack.Stack, instruction string) error {
+	switch instruction {
 	case "sa":
 		s.Sa()
 	case "sb":
@@ -30,8 +31,8 @@ func ExecuteInstruction(s *stack.Stack, instructions string) {
 	case "rrr":
 		s.Rrr()
 	default:
-		fmt.Println("Error: unknown instruction", instructions)
-		return
+		return errors.New("invalid instruction")
 	}
 	s.InstructionCount++
+	return nil
 }

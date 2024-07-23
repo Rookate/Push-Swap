@@ -31,10 +31,10 @@ func SortAlgorithm(s *stack.Stack) {
 					instructions.ExecuteInstruction(s, "pa")
 					break
 				}
-				if len(s.StackA) > 1 && len(s.StackB) > 1 && s.StackA[0] > s.StackA[1] && s.StackB[0] < s.StackB[1] {
+				if len(s.StackA) > 1 && len(s.StackB) > 1 && s.StackA[0] > s.StackA[1] && s.StackA[0] != Max(s.StackA) && s.StackB[0] < s.StackB[1] {
 					instructions.ExecuteInstruction(s, "ss")
 					continue
-				} else if s.StackA[0] > s.StackA[1] {
+				} else if s.StackA[0] > s.StackA[1] && s.StackA[0] != Max(s.StackA) {
 					instructions.ExecuteInstruction(s, "sa")
 					continue
 				} else if s.StackB[0] < s.StackB[1] {

@@ -18,5 +18,8 @@ func Resolve(s *stack.Stack) {
 	if IsDescending(s.StackA) && len(s.StackA) <= 5 {
 		ReverseSort(s)
 	}
+	if len(s.StackA) == 3 {
+		SortThree(s)
+	}
 	SortAlgorithm(s)
 }
