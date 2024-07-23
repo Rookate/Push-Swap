@@ -18,7 +18,7 @@ func (s *Stack) Ra() {
 
 func (s *Stack) Rb() {
 	if len(s.StackB) < 2 {
-		fmt.Println("Error: not enough arguments to roate B")
+		fmt.Println("Error: not enough arguments to rotate B")
 	}
 	first := s.StackB[0]
 

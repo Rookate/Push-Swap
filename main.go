@@ -44,5 +44,5 @@ func main() {
 	fmt.Println("Stack B:", s.StackB)
 	fmt.Println("Result:", result)
 	fmt.Println("Instruction Count:", s.InstructionCount)
-	fmt.Println("Flags:", s.Operation)
+	fmt.Println("Flags:", strings.Join(s.Operation, "\\n"))
 }
