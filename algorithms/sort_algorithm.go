@@ -5,68 +5,79 @@ import (
 	"Push-Swap/stack"
 )
 
-func SortAlgorithm(s *stack.Stack) {
-	middle := len(s.StackA) / 2
-	if len(s.StackA)%2 != 0 {
-		middle++
+func SortAlgorithm(s *stack.Stack) bool {
+	if IsSorted(s.StackA) && len(s.StackB) == 0 {
+		return true
 	}
 
-	for !IsSorted(s.StackA) || len(s.StackB) != 0 {
-		if len(s.StackA) > 1 && s.StackA[0] == Max(s.StackA) {
-			instructions.ExecuteInstruction(s, "ra")
-			continue
-		} else if len(s.StackA) > 1 && Min(s.StackA) == s.StackA[len(s.StackA)-1] {
-			instructions.ExecuteInstruction(s, "rra")
-			continue
-		} else if len(s.StackA) > 1 && s.StackA[0] > s.StackA[1] {
-			instructions.ExecuteInstruction(s, "sa")
-			continue
-		} else {
-			if len(s.StackA) > 1 {
-				for i := 0; i < middle; i++ {
-					instructions.ExecuteInstruction(s, "pb")
-				}
-			}
+	var possibles []string
 
-			for len(s.StackB) > 0 {
-				if len(s.StackB) == 1 && IsSorted(s.StackA) {
-					instructions.ExecuteInstruction(s, "pa")
-					break
-				}
-				if len(s.StackB) > 1 || !IsSorted(s.StackA) {
-					if len(s.StackA) > 1 && len(s.StackB) > 1 && s.StackA[0] > s.StackA[1] && s.StackA[0] != Max(s.StackA) && s.StackB[0] < s.StackB[1] {
-						instructions.ExecuteInstruction(s, "ss")
-						continue
-					} else if len(s.StackA) > 1 && s.StackA[0] > s.StackA[1] && s.StackA[0] != Max(s.StackA) {
-						instructions.ExecuteInstruction(s, "sa")
-						continue
-					} else if len(s.StackB) > 1 && s.StackB[0] < s.StackB[1] {
-						instructions.ExecuteInstruction(s, "sb")
-						continue
-					} else if len(s.StackA) > 1 && len(s.StackB) > 1 && s.StackA[0] == Max(s.StackA) && s.StackB[0] == Min(s.StackB) {
-						instructions.ExecuteInstruction(s, "rr")
-						continue
-					} else if len(s.StackA) > 1 && s.StackA[0] == Max(s.StackA) {
-						instructions.ExecuteInstruction(s, "ra")
-						continue
-					} else if len(s.StackB) > 1 && s.StackB[0] == Min(s.StackB) {
-						instructions.ExecuteInstruction(s, "rb")
-						continue
-					} else if len(s.StackA) > 1 && len(s.StackB) > 1 && s.StackA[len(s.StackA)-1] == Min(s.StackA) && s.StackB[len(s.StackB)-1] == Max(s.StackB) {
-						instructions.ExecuteInstruction(s, "rrr")
-						continue
-					} else if len(s.StackA) > 1 && s.StackA[len(s.StackA)-1] == Min(s.StackA) {
-						instructions.ExecuteInstruction(s, "rra")
-						continue
-					} else if len(s.StackB) > 1 && s.StackB[len(s.StackB)-1] == Max(s.StackB) {
-						instructions.ExecuteInstruction(s, "rrb")
-						continue
-					} else {
-						instructions.ExecuteInstruction(s, "pa")
-						continue
-					}
-				}
+	if IsSorted(s.StackA) && IsDescending(s.StackB) {
+		possibles = append(possibles, "pa")
+	}
+
+	// What can we do here?
+	if len(s.StackA) > 1 && len(s.StackB) > 1 {
+		if len(s.StackA) > 1 && len(s.StackB) > 2 {
+			if s.StackA[len(s.StackA)-1] == Min(s.StackA) && s.StackB[len(s.StackB)-1] == Max(s.StackB) {
+				possibles = append(possibles, "rrr")
+			}
+			if s.StackA[0] == Max(s.StackA) && s.StackB[0] == Min(s.StackB) {
+				possibles = append(possibles, "rr")
 			}
 		}
+		if s.StackA[0] > s.StackA[1] && s.StackB[0] < s.StackB[1] {
+			possibles = append(possibles, "ss")
+		}
 	}
+	if len(s.StackA) > 1 {
+		if len(s.StackA) > 2 {
+			if s.StackA[len(s.StackA)-1] == Min(s.StackA) {
+				possibles = append(possibles, "rra")
+			}
+			if s.StackA[0] == Max(s.StackA) {
+				possibles = append(possibles, "ra")
+			}
+		}
+		if s.StackA[0] > s.StackA[1] {
+			possibles = append(possibles, "sa")
+		}
+	}
+
+	if len(s.StackB) > 0 {
+		if len(s.StackB) > 1 {
+			if len(s.StackB) > 2 {
+				if s.StackB[len(s.StackB)-1] == Max(s.StackB) {
+					possibles = append(possibles, "rrb")
+				}
+				if s.StackB[0] == Min(s.StackB) {
+					possibles = append(possibles, "rb")
+				}
+			}
+			if s.StackB[0] < s.StackB[1] {
+				possibles = append(possibles, "sb")
+			}
+		}
+		if IsSorted(s.StackA) && s.StackB[0] < s.StackA[0] {
+			possibles = append(possibles, "pa")
+		}
+	}
+
+	if len(s.StackA) > 0 {
+		possibles = append(possibles, "pb")
+	}
+
+	// Let's do each and find out...
+	for _, inst := range possibles {
+		instructions.ExecuteInstruction(s, inst)
+		// TODO : how do I call the function itself?
+		done := SortAlgorithm(s)
+		if !done {
+			instructions.RollbackInstruction(s)
+		} else {
+			return done
+		}
+	}
+
+	return false
 }

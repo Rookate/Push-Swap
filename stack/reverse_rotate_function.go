@@ -11,7 +11,6 @@ func (s *Stack) Rra() {
 	last := s.StackA[len(s.StackA)-1]
 	s.StackA = s.StackA[:len(s.StackA)-1]
 	s.StackA = append([]int{last}, s.StackA...)
-	s.Operation = append(s.Operation, "rra")
 }
 
 func (s *Stack) Rrb() {
@@ -23,7 +22,6 @@ func (s *Stack) Rrb() {
 	last := s.StackB[len(s.StackB)-1]
 	s.StackB = s.StackB[:len(s.StackB)-1]
 	s.StackB = append([]int{last}, s.StackB...)
-	s.Operation = append(s.Operation, "rrb")
 }
 
 func (s *Stack) Rrr() {
@@ -38,5 +36,4 @@ func (s *Stack) Rrr() {
 		s.StackB = s.StackB[:len(s.StackB)-1]
 		s.StackB = append([]int{last}, s.StackB...)
 	}
-	s.Operation = append(s.Operation, "rrr")
 }

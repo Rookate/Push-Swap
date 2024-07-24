@@ -12,7 +12,6 @@ func (s *Stack) Pb() {
 	s.StackA = s.StackA[1:]
 
 	s.StackB = append([]int{value}, s.StackB...)
-	s.Operation = append(s.Operation, "pb")
 }
 
 func (s *Stack) Pa() {
@@ -25,6 +24,4 @@ func (s *Stack) Pa() {
 	s.StackB = s.StackB[1:]
 
 	s.StackA = append([]int{value}, s.StackA...)
-
-	s.Operation = append(s.Operation, "pa")
 }

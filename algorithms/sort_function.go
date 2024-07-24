@@ -13,6 +13,21 @@ func IsSorted(stack []int) bool {
 	return true
 }
 
+func IsNSorted(stack []int) int {
+	if len(stack) <= 1 {
+		return len(stack)
+	}
+
+	cpt := 1
+	for i := 1; i < len(stack); i++ {
+		if stack[i] < stack[i-1] {
+			return cpt
+		}
+	}
+
+	return len(stack)
+}
+
 func IsDescending(stack []int) bool {
 	for i := 0; i < len(stack)-1; i++ {
 		if stack[i] < stack[i+1] {

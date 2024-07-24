@@ -13,7 +13,6 @@ func (s *Stack) Ra() {
 	s.StackA = s.StackA[1:]
 
 	s.StackA = append(s.StackA, first)
-	s.Operation = append(s.Operation, "ra")
 }
 
 func (s *Stack) Rb() {
@@ -25,7 +24,6 @@ func (s *Stack) Rb() {
 	s.StackB = s.StackB[1:]
 
 	s.StackB = append(s.StackB, first)
-	s.Operation = append(s.Operation, "rb")
 }
 
 func (s *Stack) Rr() {
@@ -40,6 +38,4 @@ func (s *Stack) Rr() {
 		s.StackB = s.StackB[1:]
 		s.StackB = append(s.StackB, first)
 	}
-
-	s.Operation = append(s.Operation, "rr")
 }

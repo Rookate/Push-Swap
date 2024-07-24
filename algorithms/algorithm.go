@@ -12,14 +12,16 @@ func Resolve(s *stack.Stack) {
 	}
 
 	if IsSorted(s.StackA) {
-		fmt.Println("Stack already sort")
+		fmt.Println("Stack already sorted")
 		return
 	}
 	if IsDescending(s.StackA) && len(s.StackA) <= 5 {
 		ReverseSort(s)
 	}
-	if len(s.StackA) == 3 {
-		SortThree(s)
+
+	if SortAlgorithm(s) {
+		fmt.Println("Stack sorted successfully.")
+	} else {
+		fmt.Println("Stack could not be sorted.")
 	}
-	SortAlgorithm(s)
 }

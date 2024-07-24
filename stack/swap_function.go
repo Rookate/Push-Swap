@@ -12,7 +12,6 @@ func (s *Stack) Sa() {
 
 	s.StackA[0] = second
 	s.StackA[1] = first
-	s.Operation = append(s.Operation, "sa")
 }
 
 func (s *Stack) Sb() {
@@ -26,9 +25,6 @@ func (s *Stack) Sb() {
 
 	s.StackB[0] = second
 	s.StackB[1] = first
-
-	s.Operation = append(s.Operation, "sb")
-
 }
 
 func (s *Stack) Ss() {
@@ -47,5 +43,4 @@ func (s *Stack) Ss() {
 		s.StackB[0] = second
 		s.StackB[1] = first
 	}
-	s.Operation = append(s.Operation, "ss")
 }

@@ -24,7 +24,7 @@ func main() {
 
 	var s stack.Stack
 
-	tokens := strings.Fields(os.Args[1])
+	tokens := strings.Fields(args)
 	for _, token := range tokens {
 		if !condition.IsNumber(token) {
 			fmt.Println("Error: some arguments are not integers")
